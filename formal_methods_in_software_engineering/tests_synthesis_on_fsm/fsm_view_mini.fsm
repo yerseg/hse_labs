@@ -1,0 +1,642 @@
+<!DOCTYPE FSM>
+<FSM>
+    <statemachine>
+        <name></name>
+        <comment></comment>
+        <initialstate>Opened, Unlocked</initialstate>
+        <input>
+            <name>break</name>
+            <comment></comment>
+        </input>
+        <input>
+            <name>close</name>
+            <comment></comment>
+        </input>
+        <input>
+            <name>lock</name>
+            <comment></comment>
+        </input>
+        <input>
+            <name>open</name>
+            <comment></comment>
+        </input>
+        <input>
+            <name>unlock</name>
+            <comment></comment>
+        </input>
+        <output>
+            <name>ALARM</name>
+            <comment></comment>
+        </output>
+        <state>
+            <name>Broken</name>
+            <comment></comment>
+            <incomeactions/>
+            <outcomeactions/>
+            <transitions>
+                <transition type="simple">
+                    <name>LOCK</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Broken</destination>
+                    <transite_destination>Broken</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>UNLOCK</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Broken</destination>
+                    <transite_destination>Broken</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>OPEN</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Broken</destination>
+                    <transite_destination>Broken</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>CLOSE</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Broken</destination>
+                    <transite_destination>Broken</transite_destination>
+                    <transitionactions/>
+                </transition>
+            </transitions>
+        </state>
+        <state>
+            <name>Closed, Locked</name>
+            <comment></comment>
+            <incomeactions/>
+            <outcomeactions/>
+            <transitions>
+                <transition type="simple">
+                    <name>UNLOCK/BIP_1</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Closed, Unlocked</destination>
+                    <transite_destination>Closed, Unlocked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>OPEN/ALARM</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Broken</destination>
+                    <transite_destination>Broken</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>CLOSE</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Closed, Locked</destination>
+                    <transite_destination>Closed, Locked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>LOCK</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Closed, Locked</destination>
+                    <transite_destination>Closed, Locked</transite_destination>
+                    <transitionactions/>
+                </transition>
+            </transitions>
+        </state>
+        <state>
+            <name>Closed, Unlocked</name>
+            <comment></comment>
+            <incomeactions/>
+            <outcomeactions/>
+            <transitions>
+                <transition type="simple">
+                    <name>LOCK/BIP_2</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Closed, Locked</destination>
+                    <transite_destination>Closed, Locked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>OPEN</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Opened, Unlocked</destination>
+                    <transite_destination>Opened, Unlocked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>CLOSE</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Closed, Unlocked</destination>
+                    <transite_destination>Closed, Unlocked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>UNLOCK</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Closed, Unlocked</destination>
+                    <transite_destination>Closed, Unlocked</transite_destination>
+                    <transitionactions/>
+                </transition>
+            </transitions>
+        </state>
+        <state>
+            <name>Opened, Locked</name>
+            <comment></comment>
+            <incomeactions/>
+            <outcomeactions/>
+            <transitions>
+                <transition type="simple">
+                    <name>UNLOCK/BIP_1</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Opened, Unlocked</destination>
+                    <transite_destination>Opened, Unlocked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>CLOSE</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Closed, Locked</destination>
+                    <transite_destination>Closed, Locked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>LOCK</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Opened, Locked</destination>
+                    <transite_destination>Opened, Locked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>OPEN</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Opened, Locked</destination>
+                    <transite_destination>Opened, Locked</transite_destination>
+                    <transitionactions/>
+                </transition>
+            </transitions>
+        </state>
+        <state>
+            <name>Opened, Unlocked</name>
+            <comment></comment>
+            <incomeactions/>
+            <outcomeactions/>
+            <transitions>
+                <transition type="simple">
+                    <name>LOCK/BIP_2</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Opened, Locked</destination>
+                    <transite_destination>Opened, Locked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>CLOSE</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Closed, Unlocked</destination>
+                    <transite_destination>Closed, Unlocked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>OPEN</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Opened, Unlocked</destination>
+                    <transite_destination>Opened, Unlocked</transite_destination>
+                    <transitionactions/>
+                </transition>
+                <transition type="simple">
+                    <name>UNLOCK</name>
+                    <comment></comment>
+                    <condition></condition>
+                    <destination>Opened, Unlocked</destination>
+                    <transite_destination>Opened, Unlocked</transite_destination>
+                    <transitionactions/>
+                </transition>
+            </transitions>
+        </state>
+    </statemachine>
+    <graphics>
+        <class classname="GStateSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GStateSaver">
+                <qstring name="stateName">Broken</qstring>
+                <QPoint name="position">
+                    <int>-1271</int>
+                    <int>-386</int>
+                </QPoint>
+            </data>
+        </class>
+        <class classname="GStateSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GStateSaver">
+                <qstring name="stateName">Closed, Locked</qstring>
+                <QPoint name="position">
+                    <int>-1569</int>
+                    <int>-282</int>
+                </QPoint>
+            </data>
+        </class>
+        <class classname="GStateSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GStateSaver">
+                <qstring name="stateName">Closed, Unlocked</qstring>
+                <QPoint name="position">
+                    <int>-1868</int>
+                    <int>-282</int>
+                </QPoint>
+            </data>
+        </class>
+        <class classname="GStateSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GStateSaver">
+                <qstring name="stateName">Opened, Locked</qstring>
+                <QPoint name="position">
+                    <int>-1574</int>
+                    <int>-452</int>
+                </QPoint>
+            </data>
+        </class>
+        <class classname="GStateSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GStateSaver">
+                <qstring name="stateName">Opened, Unlocked</qstring>
+                <QPoint name="position">
+                    <int>-1873</int>
+                    <int>-456</int>
+                </QPoint>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Broken</qstring>
+                <int name="transition">0</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1132</int>
+                        <int>-498</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1329</int>
+                        <int>-503</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Broken</qstring>
+                <int name="transition">1</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1117</int>
+                        <int>-516</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1343</int>
+                        <int>-520</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Broken</qstring>
+                <int name="transition">2</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1167</int>
+                        <int>-465</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1304</int>
+                        <int>-466</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Broken</qstring>
+                <int name="transition">3</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1151</int>
+                        <int>-479</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1317</int>
+                        <int>-486</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Closed, Locked</qstring>
+                <int name="transition">0</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1642</int>
+                        <int>-329</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Closed, Locked</qstring>
+                <int name="transition">1</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1257</int>
+                        <int>-309</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Closed, Locked</qstring>
+                <int name="transition">2</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1444</int>
+                        <int>-193</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1568</int>
+                        <int>-190</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Closed, Locked</qstring>
+                <int name="transition">3</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1432</int>
+                        <int>-171</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1582</int>
+                        <int>-169</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Closed, Unlocked</qstring>
+                <int name="transition">0</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1644</int>
+                        <int>-268</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Closed, Unlocked</qstring>
+                <int name="transition">1</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1837</int>
+                        <int>-375</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Closed, Unlocked</qstring>
+                <int name="transition">2</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1730</int>
+                        <int>-150</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1868</int>
+                        <int>-148</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Closed, Unlocked</qstring>
+                <int name="transition">3</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1722</int>
+                        <int>-132</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1876</int>
+                        <int>-124</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Opened, Locked</qstring>
+                <int name="transition">0</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1647</int>
+                        <int>-486</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Opened, Locked</qstring>
+                <int name="transition">1</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1463</int>
+                        <int>-376</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Opened, Locked</qstring>
+                <int name="transition">2</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1405</int>
+                        <int>-573</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1590</int>
+                        <int>-579</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Opened, Locked</qstring>
+                <int name="transition">3</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1425</int>
+                        <int>-549</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1570</int>
+                        <int>-551</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Opened, Unlocked</qstring>
+                <int name="transition">0</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1639</int>
+                        <int>-437</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Opened, Unlocked</qstring>
+                <int name="transition">1</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1765</int>
+                        <int>-377</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Opened, Unlocked</qstring>
+                <int name="transition">2</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1740</int>
+                        <int>-548</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1852</int>
+                        <int>-549</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+        <class classname="GTransitionSaver">
+            <meta classname="GSaver">
+                <data classname="GSaver"/>
+            </meta>
+            <data classname="GTransitionSaver">
+                <qstring name="stateName">Opened, Unlocked</qstring>
+                <int name="transition">3</int>
+                <qvaluelist name="points">
+                    <QPoint>
+                        <int>-1724</int>
+                        <int>-569</int>
+                    </QPoint>
+                    <QPoint>
+                        <int>-1863</int>
+                        <int>-568</int>
+                    </QPoint>
+                </qvaluelist>
+            </data>
+        </class>
+    </graphics>
+</FSM>

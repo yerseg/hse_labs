@@ -1,0 +1,38 @@
+openssl verify -verbose -CAfile kazminsk-msp21-ca.crt kazminsk-msp21-ca.crt 
+openssl x509 -text -noout -in kazminsk-msp21-ca.crt 
+
+CA
+
+openssl genrsa -aes256 -out kazminsk-msp21-ca.key 4096
+openssl req -x509 -new -key kazminsk-msp21-ca.key -days 1825 -subj "/C=RU/ST=Moscow/L=Moscow/O=kazminsk/OU=kazminsk P1/CN=kazminsk CA/emailAddress=skkazmin@edu.hse.ru" -out kazminsk-msp21-ca.crt -passin pass:kazminsk -reqexts v3_ca_req -extensions v3_ca_ext
+
+Intr
+
+openssl genrsa -aes256 -out kazminsk-msp21-intr.key 4096
+openssl req -new -key kazminsk-msp21-intr.key -out intr.csr -subj "/C=RU/ST=Moscow/L=Moscow/O=kazminsk/OU=kazminsk P1/CN=kazminsk Intermediate CA/emailAddress=skkazmin@edu.hse.ru" -passin pass:kazminsk -reqexts v3_intr_req
+openssl x509 -req -days 365 -CA kazminsk-msp21-ca.crt -CAkey kazminsk-msp21-ca.key -CAcreateserial -CAserial serial -in intr.csr -out kazminsk-msp21-intr.crt -extensions v3_intr_ext -extfile /etc/ssl/openssl.cnf -passin pass:kazminsk
+
+Basic
+
+openssl genrsa -out kazminsk-msp21-basic.key 2048
+openssl req -new -key kazminsk-msp21-basic.key -subj "/C=RU/ST=Moscow/L=Moscow/O=kazminsk/OU=kazminsk P1/CN=kazminsk Basic/emailAddress=skkazmin@edu.hse.ru" -reqexts v3_basic_req -out basic.csr -passin pass:kazminsk
+openssl x509 -req -days 90 -extensions v3_basic_ext -extfile /etc/ssl/openssl.cnf -CA kazminsk-msp21-intr.crt -CAkey kazminsk-msp21-intr.key -CAcreateserial -CAserial serial -in basic.csr -out kazminsk-msp21-basic.crt -passin pass:kazminsk
+
+
+#2
+openssl genrsa -out kazminsk-msp21-crl-valid.key 2048
+openssl req -new -key kazminsk-msp21-crl-valid.key -subj "/C=RU/ST=Moscow/L=Moscow/O=kazminsk/OU=kazminsk P2/CN=kazminsk CRL Valid/emailAddress=skkazmin@edu.hse.ru" -reqexts v3_crl_valid_req -out crl-valid.csr -passin pass:kazminsk
+openssl x509 -req -days 90 -extensions v3_crl_valid_ext -extfile /etc/ssl/openssl.cnf -CA ../part_1/kazminsk-msp21-intr.crt -CAkey ../part_1/kazminsk-msp21-intr.key -CAcreateserial -CAserial serial -in crl-valid.csr -out kazminsk-msp21-crl-valid.crt -passin pass:kazminsk
+
+openssl genrsa  -out kazminsk-msp21-crl-revoked.key 2048
+openssl req -new -key kazminsk-msp21-crl-revoked.key -subj "/C=RU/ST=Moscow/L=Moscow/O=kazminsk/OU=kazminsk P2/CN=kazminsk CRL Revoked/emailAddress=skkazmin@edu.hse.ru" -reqexts v3_crl_revoked_req -out crl-revoked.csr -passin pass:kazminsk
+openssl x509 -req -days 90 -extensions v3_crl_revoked_ext -extfile /etc/ssl/openssl.cnf -CA ../part_1/kazminsk-msp21-intr.crt -CAkey ../part_1/kazminsk-msp21-intr.key -CAcreateserial -CAserial serial -in crl-revoked.csr -out kazminsk-msp21-crl-revoked.crt -passin pass:kazminsk -passin pass:kazminsk
+
+openssl ca -config /etc/ssl/openssl.cnf -cert ../part_1/kazminsk-msp21-intr.crt -keyfile ../part_1/kazminsk-msp21-intr.key -revoke kazminsk-msp21-crl-revoked.crt -passin pass:kazminsk
+
+openssl ca -config /etc/ssl/openssl.cnf -crlexts crl_ext -cert ../part_1/kazminsk-msp21-intr.crt -keyfile ../part_1/kazminsk-msp21-intr.key -gencrl -out kazminsk-msp21.crl -passin pass:kazminsk
+
+cat ../part_1/kazminsk-msp21-ca.crt ../part_1/kazminsk-msp21-intr.crt kazminsk-msp21-crl-valid.crt kazminsk-msp21-crl-revoked.crt > kazminsk-msp21-chain.crt
+
+openssl verify -crl_check -CRLfile kazminsk-msp21.crl -CAfile kazminsk-msp21-chain.crt kazminsk-msp21-crl-valid.crt
+openssl verify -crl_check -CRLfile kazminsk-msp21.crl -CAfile kazminsk-msp21-chain.crt kazminsk-msp21-crl-revoked.crt

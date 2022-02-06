@@ -1,0 +1,26 @@
+F 0
+s 5 Opened,Unlocked Opened,Locked Closed,Unlocked Closed,Locked Broken
+i 4 open close lock unlock
+o 4 ALARM BIP_1 BIP_2 NULL
+n0 Closed,Locked
+p 20
+Opened,Unlocked open Opened,Unlocked NULL
+Opened,Unlocked close Closed,Unlocked NULL
+Opened,Unlocked lock Opened,Locked BIP_2
+Opened,Unlocked unlock Opened,Unlocked NULL
+Opened,Locked open Opened,Locked NULL
+Opened,Locked close Closed,Locked NULL
+Opened,Locked lock Opened,Locked NULL
+Opened,Locked unlock Opened,Unlocked BIP_1
+Closed,Unlocked open Opened,Unlocked NULL
+Closed,Unlocked close Closed,Unlocked NULL
+Closed,Unlocked lock Closed,Locked BIP_2
+Closed,Unlocked unlock Closed,Unlocked NULL
+Closed,Locked open Broken ALARM 
+Closed,Locked close Closed,Locked NULL
+Closed,Locked lock Closed,Locked NULL
+Closed,Locked unlock Closed,Unlocked BIP_1
+Broken open Broken NULL
+Broken close Broken NULL
+Broken lock Broken NULL
+Broken unlock Broken NULL
